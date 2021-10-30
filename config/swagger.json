@@ -1,0 +1,98 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "A simple RESTful API for meteor information",
+    "version": "1.0.0",
+    "title": "Meteor Info"
+  },
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "meteor",
+      "description": "information about a meteor"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/meteor/{id}": {
+      "get": {
+        "tags": [
+          "meteor"
+        ],
+        "summary": "get information about a meteor",
+        "operationId": "getMeteor",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the meteor to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The meteor with the given ID",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Meteor"
+              }
+            }
+          }
+        },
+        "405": {
+          "description": "Invalid input",
+          "schema": {
+            "type": "object",
+            "items": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "Meteor": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "activeYN": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "velocity": {
+          "type": "string"
+        },
+        "speedQual": {
+          "type": "integer"
+        },
+        "veloNum": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
+
+
